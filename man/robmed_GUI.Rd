@@ -32,10 +32,10 @@ The graphical user interface is still experimental.  It may change in future
 versions based on user feedback.
 }
 \examples{
-\dontrun{
-
-# start graphical user interface
-robmed_GUI()
+# run example only from an interactive R session
+if (interactive()) {
+  # start graphical user interface
+  robmed_GUI()
 }
 
 
@@ -60,7 +60,7 @@ for Assessing and Comparing Indirect Effects in Multiple Mediator Models.
 doi:10.3758/brm.40.3.879.
 }
 \seealso{
-\code{\link{test_mediation}}
+\code{\link[robmed]{test_mediation}}
 }
 \author{
 Andreas Alfons and Aurore Archimbaud, based on an initial prototype by

@@ -173,7 +173,7 @@ get_references <- function(format = "HTML") {
   # construct references in requested format
   if (format == "HTML") {
     # author information for package 'robmedExtra'
-    author <- "Alfons, A., Archimbaud, A., & Drenth, V."
+    author <- "Alfons, A., & Archimbaud, A."
     # return list of HTML tags
     tagList(
       # HTML tag for ORM paper
@@ -236,7 +236,6 @@ get_references <- function(format = "HTML") {
       "%0 Computer Program",
       "%A Alfons, A.",
       "%A Archimbaud, A.",
-      "%A Drenth, V.",
       paste("%D", year),
       paste("%T", title),
       paste("%Z", note),
@@ -244,7 +243,7 @@ get_references <- function(format = "HTML") {
     )
   } else if (format == "BibTeX") {
     # author information for package 'robmedExtra'
-    author <- "Alfons, A. and Archimbaud, A. and Drenth, V."
+    author <- "Alfons, A. and Archimbaud, A."
     # return vector of lines to be written to .bib file
     c(
       # BibTeX entry for ORM paper
@@ -1012,15 +1011,14 @@ shinyServer(function(input, output, session) {
     default_digits <- isolate(input$digits)
     if (is.null(default_digits)) default_digits <- 3
     default_p_value <- isolate(input$p_value)
-    if (is.null(default_p_value)) default_p_value <- FALSE
+    if (is.null(default_p_value)) default_p_value <- TRUE
     # create inputs
     tagList(
       sliderInput("digits", "Number of digits after decimal point",
                   min = 2, max = 6, value = default_digits,
                   step = 1, round = TRUE, ticks = FALSE),
       checkboxInput("p_value",
-                    get_label(HTML("Include <em>p</em> values for indirect effects"),
-                              "(may take time to compute)"),
+                    HTML("Include <em>p</em> values for indirect effects"),
                     value = default_p_value)
     )
   })
@@ -1464,10 +1462,18 @@ shinyServer(function(input, output, session) {
   # show diagnostic plot for ROBMED in main panel
   output$plot_preview_header <- renderUI({
     req(used_inputs$plot)
+    # if applicable, define note regarding the resolution
+    if ("png" %in% values$file_type_plot) {
+      note_resolution <- paste("Simlarly, the resolution shown here does not",
+                               "reflect the resolution selected for the png",
+                               "file.")
+    } else note_resolution <- NULL
+    # display header and note
     tagList(
       h3("File preview of diagnostic plot"),
       help_text("The size shown here depends on the resolution of the browser",
-                "and may differ from the size of the file to be generated.")
+                "and may differ from the size of the file to be generated.",
+                note_resolution)
     )
   })
   output$plot_preview <- renderPlot({

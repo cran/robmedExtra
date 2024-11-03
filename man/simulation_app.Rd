@@ -27,10 +27,10 @@ interval.  If the app does not update quickly enough, try to reduce the
 number of bootstrap samples.
 }
 \examples{
-\dontrun{
-
-# start graphical user interface
-simulation_app()
+# run example only from an interactive R session
+if (interactive()) {
+  # start graphical user interface
+  simulation_app()
 }
 
 }
@@ -62,7 +62,7 @@ Mediation Analysis.  \emph{Multivariate Behavioral Research}, \bold{45}(1),
 1--44.  doi:10.1080/00273170903504695.
 }
 \seealso{
-\code{\link{test_mediation}}
+\code{\link[robmed]{test_mediation}}
 }
 \author{
 Andreas Alfons

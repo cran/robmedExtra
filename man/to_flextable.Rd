@@ -11,12 +11,12 @@ to_flextable(object, ...)
 
 \method{to_flextable}{test_mediation}(object, type = c("boot", "data"), ...)
 
-\method{to_flextable}{summary_test_mediation}(object, p_value = FALSE, ...)
+\method{to_flextable}{summary_test_mediation}(object, p_value = TRUE, ...)
 
 \method{to_flextable}{list}(
   object,
   type = c("boot", "data"),
-  p_value = FALSE,
+  p_value = TRUE,
   orientation = c("landscape", "portrait"),
   ...
 )
@@ -56,9 +56,9 @@ percentile-based confidence interval due to the asymmetry of its
 distribution.}
 
 \item{p_value}{a logical indicating whether to include p-values for the
-indirect effects if mediation analysis was done via a bootstrap procedure
-(defaults to \code{FALSE}).  If \code{TRUE}, the p-values are obtained via
-\code{\link[robmed]{p_value}()} and may take some time to compute.}
+indirect effects if mediation analysis was done via a bootstrap procedure.
+If \code{TRUE} (the default), the p-values are obtained via
+\code{\link[robmed]{p_value}()}.}
 
 \item{orientation}{a character string specifying how to arrange the results
 from different objects (list elements) in the \code{flextable}.  If
@@ -91,7 +91,7 @@ number formatting between functions \code{to_flextable()} and
 data("BSG2014")
 
 # seed to be used for the random number generator
-seed <- 20211117
+seed <- 20150601
 
 # perform mediation analysis via robust bootstrap test ROBMED
 set.seed(seed)
@@ -100,6 +100,10 @@ robust_boot <- test_mediation(BSG2014,
                               y = "TeamCommitment",
                               m = "TaskConflict",
                               robust = TRUE)
+
+# note that depending on the seed of the random number
+# generator, the p value of the indirect effect may fall
+# below or above the arbitrary 5\% threshold
 
 # construct flextable of results
 to_flextable(robust_boot)
@@ -132,7 +136,7 @@ The \R Package \pkg{robmed}.  \emph{Journal of Statistical Software},
 \bold{103}(13), 1--45.  doi:10.18637/jss.v103.i13.
 }
 \seealso{
-\code{\link{test_mediation}()},
+\code{\link[robmed]{test_mediation}()},
 \code{\link[robmed:summary.test_mediation]{summary}()}
 
 \code{\link{export_docx}()}, \code{\link{export_pptx}()}

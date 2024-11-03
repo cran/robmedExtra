@@ -1,8 +1,8 @@
 Package: robmedExtra
 Type: Package
 Title: Extra Functionality for (Robust) Mediation Analysis
-Version: 0.1.0
-Date: 2023-06-02
+Version: 0.1.1
+Date: 2024-11-03
 Depends: robmed (>= 0.10.0)
 Imports: shiny (>= 1.1.0), DT, flextable (>= 0.8.3), ggplot2 (>=
         3.3.0), graphics, grDevices, officer, stats, utils
@@ -20,14 +20,15 @@ Authors@R:
              role = "aut",
              comment = c(ORCID = "0000-0002-6511-9091")),
       person("Vincent", "Drenth", 
-             role = "aut"))
+             role = "ctb", 
+             comment = "initial prototype of GUI"))
 Author: Andreas Alfons [aut, cre] (<https://orcid.org/0000-0002-2513-3788>),
   Aurore Archimbaud [aut] (<https://orcid.org/0000-0002-6511-9091>),
-  Vincent Drenth [aut]
+  Vincent Drenth [ctb] (initial prototype of GUI)
 Maintainer: Andreas Alfons <alfons@ese.eur.nl>
 Encoding: UTF-8
-RoxygenNote: 7.2.3
+RoxygenNote: 7.3.2
 NeedsCompilation: no
-Packaged: 2023-06-02 10:15:58 UTC; andreas
+Packaged: 2024-11-03 10:53:50 UTC; alfons
 Repository: CRAN
-Date/Publication: 2023-06-02 14:40:02 UTC
+Date/Publication: 2024-11-03 12:10:01 UTC
